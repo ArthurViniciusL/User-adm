@@ -31,3 +31,14 @@ body {
     text-wrap: balance;
   }
 }
+
+:root {
+  --btn-padding: 10px;
+  --padding-app: 20px;
+}
+
+h1 {
+  font-size: xx-large;
+  font-style: normal;
+  font-weight: bold;
+}

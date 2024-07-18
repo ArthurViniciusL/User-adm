@@ -1,8 +1,21 @@
+import { Header } from "./components/Header";
+import { SearchBar } from "./components/SearchBar";
+import { Table } from "./components/Table";
 
+import styles from './styles/Home.module.css'
+// 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <main className="">
+      <div className={styles.HomeContent} >
+        <Header />
+        <section className={styles.section}>
+          <SearchBar />
+          <Table />
+        </section>
 
-    </main>
+      </div>
+
+    </main >
   );
 }
