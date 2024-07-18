@@ -1,12 +1,14 @@
-const routes = [
+import Home from "./page";
+
+const Routes = [
     {
         path: '/',
-        component: 'Home'
-    },
-    {
-        path: '',
+        component: Home
+      },
+      {
+        path: 'products',
         component: ''
-    }
-];
+      }
+]
 
-export default routes;
+export default Routes;

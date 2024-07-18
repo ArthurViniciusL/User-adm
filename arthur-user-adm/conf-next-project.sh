@@ -22,18 +22,4 @@ do
 	mkdir $foldersPattern
 done
 
-echo "Deletando arquivos..."
-
-reactDefaults=("layout.tsx" "globals.css" "page.module.css");
-
-for reactDefaults in "${reactDefaults[@]}"
-do
-	rm $reactDefaults
-done
-
-cd styles
-touch style.css
-
-cd ../../
-
 echo "Conluido!"
