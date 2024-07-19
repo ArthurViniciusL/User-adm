@@ -13,9 +13,7 @@ export default function Home() {
           <SearchBar />
           <Table />
         </section>
-
       </div>
-
     </main >
   );
 }
