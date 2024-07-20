@@ -1,24 +1,6 @@
-.header {
-    width: 100%;
+.appHeader {
+    width: 100vw;
+    padding: var(--padding-app);
     display: flex;
     justify-content: space-between;
-    align-items: center;
-
-    margin-bottom: var(--padding-app);
-}
-
-.headButton {
-    padding: var(--btn-padding);
-    border-radius: 8px;
-    color: white;
-    font-weight: bold;
-    gap: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #3564ca;
-}
-
-.headButton:hover {
-    box-shadow: 0px 0px 20px 6px rgba(53, 100, 202, 0.377);
 }

@@ -1,19 +1,30 @@
-import { Header } from "./components/Header";
-import { SearchBar } from "./components/SearchBar";
-import { Table } from "./components/Table";
+'use client'
 
-import styles from './styles/Home.module.css'
-// 
-export default function Home() {
+import { Header } from "@/app/components/Header";
+import { Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
+import Routes from "./app.routing";
+
+import { SearchBar } from "@/app/components/SearchBar";
+import { Table } from "@/app/components/Table";
+
+export default function List() {
+  
+  const router = useRouter();
+
   return (
-    <main className="">
-      <div className={styles.HomeContent} >
-        <Header />
-        <section className={styles.section}>
-          <SearchBar />
-          <Table />
-        </section>
-      </div>
+    <main>
+      <Header title="Users" >
+        <button className='app-btn' onClick={() => router.push(Routes.userRegistration)}>
+          <Plus />
+          New User
+        </button>
+      </Header>
+
+      <section>
+        <SearchBar />
+        <Table />
+      </section>
     </main >
-  );
+  )
 }

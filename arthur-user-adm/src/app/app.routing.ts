@@ -1,14 +1,8 @@
-import Home from "./page";
 
-const Routes = [
-    {
-        path: '/',
-        component: Home
-      },
-      {
-        path: 'products',
-        component: ''
-      }
-]
+const Routes = {
+  list: '/',
+  userRegistration: '/pages/users/create'
+}
+
 
 export default Routes;

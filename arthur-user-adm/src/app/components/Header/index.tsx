@@ -1,14 +1,16 @@
-import { Plus } from 'lucide-react'
-import styles from './Header.module.css'
+'use client'
+import styles from './Header.module.css';;
 
-export function Header() {
+interface HeaderProps {
+    title: string;
+    children?: React.ReactNode;
+}
+
+export function Header({title, children}: HeaderProps) {
     return (
-        <header className={styles.header}>
-            <h1 className={styles.h1}>User</h1>
-            <button className={styles.headButton}>
-                <Plus />
-                New User
-            </button>
+        <header className={styles.appHeader}>
+            <h1>{title}</h1>
+            {children}
         </header>
     )
 }
