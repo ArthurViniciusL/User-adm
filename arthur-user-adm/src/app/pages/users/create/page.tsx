@@ -1,5 +1,7 @@
 'use client';
 
+import styles from './Create.module.css'
+
 import DataService from '@/app/utils/DataService';
 import { useState } from 'react';
 
@@ -10,62 +12,99 @@ import { Header } from '@/app/components/Header';
 export default function Create() {
 
     const router = useRouter();
+
     const [dataService] = useState(new DataService());
 
-    const [userName, setUserName] = useState('');
+    const [name, setName] = useState('');
 
-    function handleSetName(e: any) {
-        setUserName(e.target.value)
-    }
+    const image = 'https://example.com/image.jpg';
 
-    async function handleClick() {
+    const [company, setCompany] = useState('');
+    const [role, setRole] = useState('');
+    const [verified, setVerified] = useState(false);
+    const [status, setStatus] = useState('');
 
-        // const userName = name;
-        const image = 'https://example.com/image.jpg';
-        const role = 'Developer';
-        const verified = true;
-        const status = 'Active';
-        const company = 'Tech Corp';
-
-        await dataService.createUser(userName, image, role, verified, status, company);
-        router.push(Routes.list)
-
+    function handleSetName(name: any) {
+        setName(name.target.value);
     };
 
+    function handleSetCompany(company: any) {
+        setCompany(company.target.value)
+    };
+
+    function handleSetRole(role: any) {
+        setRole(role.target.value)
+    }
+
+    function handleSetVerified(verified: any) {
+        setVerified(verified.target.value)
+    };
+
+    function handleSetStatus(status: any) {
+        setStatus(status.target.value)
+    };
+
+    async function saveDataUser() {
+
+        // const userName = name;
+        // const company = 'Tech Corp';
+        // const role = 'Developer';
+        // const verified = true;
+        // const status = 'Active';
+
+        await dataService.createUser(name, image, company, role, verified, status);
+        router.push(Routes.list);
+    };
 
 
     return (
         <main>
             <Header title="User Registration" >
-                <button className="app-btn" onClick={handleClick}>Save</button>
+                <button className="app-btn" onClick={saveDataUser}>Save</button>
             </Header>
-            <section>
-                {/*  <h1>User Registration</h1> */}
-                <div>
-                    <label className="input input-bordered flex items-center gap-2 m-5">
+            <section className="">
+                <div className={`${styles.createUserContent} p-2`}>
+
+                    <label className="input input-bordered flex items-center w-full max-w-xs gap-2 m-5">
                         <input type="text" className="grow" placeholder="Image" />
                     </label>
 
-                    <label className="input input-bordered flex items-center gap-2 m-5">
-                        <input onChange={handleSetName} type="text" className="grow" placeholder="Name" />
-
+                    <label className="input input-bordered flex items-center w-full max-w-xs gap-2 m-5">
+                        <input onChange={handleSetName} type="text" className="grow" placeholder="Name *" />
                     </label>
 
-                    <label className="input input-bordered flex items-center gap-2 m-5">
-                        <input type="text" className="grow" placeholder="Company" />
-                    </label>
+                    <select onChange={handleSetCompany} className="select select-bordered w-full max-w-xs gap-2 m-5">
+                        <option disabled selected>Select company *</option>
+                        <option value="Hemakes">Hemakes</option>
+                        <option value="Wemake">Wemake</option>
+                        <option value="Youmake">Youmake</option>
+                    </select>
 
-                    <label className="input input-bordered flex items-center gap-2 m-5">
-                        <input type="text" className="grow" placeholder="Role" />
-                    </label>
+                    <select onChange={handleSetRole} className="select select-bordered w-full max-w-xs gap-2 m-5">
+                        <option disabled selected>What is the role? *</option>
+                        <option value="UI Designer">UI Designer</option>
+                        <option value="Hr Manager">Hr Manager</option>
+                        <option value="Leader">Leader</option>
+                        <option value="Developer">Developer</option>
+                    </select>
 
-                    <label className="input input-bordered flex items-center gap-2 m-5">
-                        <input type="text" className="grow" placeholder="Verified" />
-                    </label>
+                    {/* defaultChecked */}
+                    {/* <input type="checkbox" className="toggle" /> */}
 
-                    <label className="input input-bordered flex items-center gap-2 m-5">
-                        <input type="text" className="grow" placeholder="Status" />
-                    </label>
+                    <select onChange={handleSetStatus} className="select select-bordered w-full max-w-xs gap-2 m-5">
+                        <option disabled selected>Select status *</option>
+                        <option value="Banned">Banned</option>
+                        <option value="Active">Active</option>
+                        <option value="Idle">Idle</option>
+                    </select>
+
+                    <div className='flex justify-center'>
+                        <input type="checkbox" className="toggle" checked={verified} onChange={handleSetVerified} />
+                        <label className="ml-2">
+                            Is Verified?
+                        </label>
+                    </div>
+
 
                 </div>
             </section>

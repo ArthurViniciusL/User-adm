@@ -35,15 +35,15 @@ export default class DataService {
         return null;
     }
 
-    public createUser(name: string, image: string, role: string, verified: boolean, status: string, company: string) {
+    public createUser(name: string, image: string, company: string, role: string, verified: boolean, status: string) {
         DataService.id++;
         const data = JSON.stringify({
             name,
             image,
+            company,
             role,
             verified,
             status,
-            company
         });
 
         let updateId = window.localStorage.setItem('lastId', String(DataService.id));
