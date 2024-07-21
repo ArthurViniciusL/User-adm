@@ -1,61 +1,21 @@
 'use client';
 
-import styles from './Create.module.css'
+import styles from './Create.module.css';
 
-import DataService from '@/app/utils/DataService';
-import { useState } from 'react';
-
-import Routes from '@/app/app.routing';
-import { useRouter } from 'next/navigation';
 import { Header } from '@/app/components/Header';
+import { DataUserContext } from '@/app/context/DataUserContext';
+import { useContext } from 'react';
 
 export default function Create() {
 
-    const router = useRouter();
-
-    const [dataService] = useState(new DataService());
-
-    const [name, setName] = useState('');
-
-    const image = 'https://example.com/image.jpg';
-
-    const [company, setCompany] = useState('');
-    const [role, setRole] = useState('');
-    const [verified, setVerified] = useState(false);
-    const [status, setStatus] = useState('');
-
-    function handleSetName(name: any) {
-        setName(name.target.value);
-    };
-
-    function handleSetCompany(company: any) {
-        setCompany(company.target.value)
-    };
-
-    function handleSetRole(role: any) {
-        setRole(role.target.value)
-    }
-
-    function handleSetVerified(verified: any) {
-        setVerified(verified.target.value)
-    };
-
-    function handleSetStatus(status: any) {
-        setStatus(status.target.value)
-    };
-
-    async function saveDataUser() {
-
-        // const userName = name;
-        // const company = 'Tech Corp';
-        // const role = 'Developer';
-        // const verified = true;
-        // const status = 'Active';
-
-        await dataService.createUser(name, image, company, role, verified, status);
-        router.push(Routes.list);
-    };
-
+    const {
+        handleSetName,
+        handleSetCompany,
+        handleSetRole,
+        verified, handleSetVerified,
+        handleSetStatus,
+        saveDataUser
+    } = useContext(DataUserContext)
 
     return (
         <main>

@@ -1,6 +1,8 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import "./styles/globals.css";
+import { Inter } from "next/font/google"; 
+import type { Metadata } from "next";
+
+import { AppProvider } from "./context/AppContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +18,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="pt-br">
-      <body className={`flex min-h-screen flex-col items-center p-2 h-dvh bg-slate-50`}>{children}</body>
+      <body className={`flex min-h-screen flex-col items-center p-2 h-dvh bg-slate-50`}>
+        <AppProvider>
+          {children}
+        </AppProvider>
+      </body>
     </html>
   );
 }

@@ -1,10 +1,8 @@
 
-type UsersProperties =
-    { name: string; image: string; role: string; verified: boolean; status: string; company: string }
-
+type UsersProperties = { name: string; image: string; role: string; verified: boolean; status: string; company: string }
 
 export default class DataService {
-
+    
     private static id: number;
 
     constructor() {
