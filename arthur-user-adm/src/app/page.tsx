@@ -6,8 +6,7 @@ import { useRouter } from "next/navigation";
 import Routes from "./app.routing";
 
 import { SearchBar } from "@/app/components/SearchBar";
-import { Table } from "@/app/components/Table";
-
+import { Table } from "./components/Table";
 export default function List() {
   
   const router = useRouter();

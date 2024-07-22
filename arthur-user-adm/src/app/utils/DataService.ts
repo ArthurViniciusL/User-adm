@@ -1,8 +1,15 @@
-
-type UsersProperties = { name: string; image: string; role: string; verified: boolean; status: string; company: string }
+export type USER = {
+    id: number,
+    name: string;
+    image: string;
+    role: string;
+    verified: boolean;
+    status: string;
+    company: string
+}
 
 export default class DataService {
-    
+
     private static id: number;
 
     constructor() {
@@ -25,7 +32,7 @@ export default class DataService {
         return DATA_LOCAL_STORAGE;
     }
 
-    public getUser(userId: number): UsersProperties | null {
+    public getUser(userId: number): USER | null {
         const userData = window.localStorage.getItem(String(userId));
         if (userData) {
             return JSON.parse(userData);
@@ -35,7 +42,9 @@ export default class DataService {
 
     public createUser(name: string, image: string, company: string, role: string, verified: boolean, status: string) {
         DataService.id++;
+        const id = DataService.id;
         const data = JSON.stringify({
+            id: id,
             name,
             image,
             company,

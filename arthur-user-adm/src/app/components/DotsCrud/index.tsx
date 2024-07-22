@@ -1,8 +1,13 @@
+import { DataUserContext } from "@/app/context/DataUserContext";
 import DataService from "@/app/utils/DataService";
 import { DotSquareIcon, EllipsisVertical } from "lucide-react";
-import { useState } from "react";
+import { useContext, useState } from "react";
 
-export function DotsCrud() {
+interface DotsCrudProps {
+    userId: any;
+}
+
+export function DotsCrud({ userId }: DotsCrudProps) {
 
     const [dataService] = useState(new DataService());
 
@@ -18,7 +23,7 @@ export function DotsCrud() {
                     </button>
                 </li>
                 <li>
-                    <button onClick={() => dataService.deleteUser(1)} >
+                    <button onClick={() => dataService.deleteUser(userId)} >
                         Delete
                     </button>
                 </li>

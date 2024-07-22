@@ -4,18 +4,22 @@ import styles from './Create.module.css';
 
 import { Header } from '@/app/components/Header';
 import { DataUserContext } from '@/app/context/DataUserContext';
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 export default function Create() {
 
     const {
+        saveDataUser,
         handleSetName,
         handleSetCompany,
         handleSetRole,
-        verified, handleSetVerified,
-        handleSetStatus,
-        saveDataUser
+        handleSetVerified, verified, setVerified,
+        handleSetStatus
     } = useContext(DataUserContext)
+
+    useEffect(() => {
+        setVerified(false);
+    }, [])
 
     return (
         <main>
@@ -23,7 +27,7 @@ export default function Create() {
                 <button className="app-btn" onClick={saveDataUser}>Save</button>
             </Header>
             <section className="">
-                <div className={`${styles.createUserContent} p-2`}>
+                < div className={`${styles.createUserContent} p-2`}>
 
                     <label className="input input-bordered flex items-center w-full max-w-xs gap-2 m-5">
                         <input type="text" className="grow" placeholder="Image" />
@@ -33,15 +37,15 @@ export default function Create() {
                         <input onChange={handleSetName} type="text" className="grow" placeholder="Name *" />
                     </label>
 
-                    <select onChange={handleSetCompany} className="select select-bordered w-full max-w-xs gap-2 m-5">
-                        <option disabled selected>Select company *</option>
+                    <select defaultValue="" onChange={handleSetCompany} className="select select-bordered w-full max-w-xs gap-2 m-5">
+                        <option value="" disabled>Select company *</option>
                         <option value="Hemakes">Hemakes</option>
                         <option value="Wemake">Wemake</option>
                         <option value="Youmake">Youmake</option>
                     </select>
 
-                    <select onChange={handleSetRole} className="select select-bordered w-full max-w-xs gap-2 m-5">
-                        <option disabled selected>What is the role? *</option>
+                    <select defaultValue="" onChange={handleSetRole} className="select select-bordered w-full max-w-xs gap-2 m-5">
+                        <option value="" disabled>What is the role? *</option>
                         <option value="UI Designer">UI Designer</option>
                         <option value="Hr Manager">Hr Manager</option>
                         <option value="Leader">Leader</option>
@@ -51,20 +55,20 @@ export default function Create() {
                     {/* defaultChecked */}
                     {/* <input type="checkbox" className="toggle" /> */}
 
-                    <select onChange={handleSetStatus} className="select select-bordered w-full max-w-xs gap-2 m-5">
-                        <option disabled selected>Select status *</option>
+                    <select defaultValue="" onChange={handleSetStatus} className="select select-bordered w-full max-w-xs gap-2 m-5">
+                        <option value="" disabled>Select status *</option>
                         <option value="Banned">Banned</option>
                         <option value="Active">Active</option>
                         <option value="Idle">Idle</option>
                     </select>
 
-                    <div className='flex justify-center'>
-                        <input type="checkbox" className="toggle" checked={verified} onChange={handleSetVerified} />
+                    <div className='flex justify-center gap-4'>
                         <label className="ml-2">
-                            Is Verified?
+                            Verified
                         </label>
-                    </div>
 
+                        <input type="checkbox" className="toggle" checked={verified} onChange={handleSetVerified} />
+                    </div>
 
                 </div>
             </section>

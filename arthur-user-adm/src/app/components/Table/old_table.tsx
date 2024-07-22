@@ -1,10 +1,67 @@
-import { useContext, useEffect, useState } from "react";
+'use client'
+
+import DataService from "@/app/utils/DataService";
 import { DotsCrud } from "../DotsCrud";
-import { DataUserContext } from "@/app/context/DataUserContext";
+import { useEffect, useState } from "react";
 
-export function Table() {
+type userAttributes = {
+    id: number,
+    name: string,
+    company: string
+    role: string,
+    verified: string,
+    status: string
+}
 
-    const { allUsers } = useContext(DataUserContext);
+/* const fakeUsers: userAttributes[] = [
+    {
+        id: 1,
+        name: "Hart Hagerty",
+        company: 'Windler Group',
+        role: "UI Designer",
+        verified: "yes",
+        status: "active"
+    },
+    {
+        id: 2,
+        name: "Hart Hagerty",
+        company: 'Reliance',
+        role: "Front-end develop",
+        verified: "Yes",
+        status: "Active"
+    }
+] */
+
+export function OldaTable() {
+
+    const [dataService] = useState(new DataService());
+    const [users, setUsers] = useState<userAttributes[]>([]);
+
+    async function listUsers() {
+        const allUsers = await dataService.getAllUsers();
+
+        //  converte o objeto allUsers em uma matriz de pares chave-valor ([id, userData]), onde id é a chave e userData é o valor associado.
+        const userList = Object.entries(allUsers)
+            .map(([id, userData]) => {
+                if (userData) {
+                    const user = JSON.parse(userData);
+                    return {                        
+                        name: user.name,
+                        company: user.company,
+                        role: user.role,
+                        verified: user.verified,
+                        status: user.status
+                    };
+                }
+                return null;
+            }).filter(user => user !== null) as userAttributes[]; // Filtra valores nulos e ajusta o tipo
+
+        setUsers(userList);
+    };
+
+    useEffect(() => {
+        listUsers();
+    }, [dataService]);
 
     return (
         <div className="overflow-x-auto">
@@ -27,7 +84,7 @@ export function Table() {
                 </thead>
                 <tbody>
                     {
-                        allUsers.map((user: any, index: number) => (
+                        users.map((user, index) => (
                             <tr key={index}>
                                 <th>
                                     <label>
@@ -62,7 +119,7 @@ export function Table() {
 
                                 <th>
                                     {/* Assume DotsCrud is another component */}
-                                    <DotsCrud userId={user.id} />
+                                    <DotsCrud />
                                 </th>
                             </tr>
                         ))
@@ -70,5 +127,5 @@ export function Table() {
                 </tbody>
             </table>
         </div>
-    )
+    );
 }
