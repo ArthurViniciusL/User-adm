@@ -1,16 +1,12 @@
 import { useContext, useEffect, useState } from "react";
 import { DotsCrud } from "../DotsCrud";
-import { DataUserContext } from "@/app/context/DataUserContext";
-import Image from "next/image";
+import { CreateUserContext } from "@/app/context/CreateUserContext";
+import { StatusTag } from "../StatusTag";
 
 export function Table() {
 
-    // const [allUsers, setAllUser] = useState([]);
-
-    const { users } = useContext(DataUserContext);
-
-
-
+    const { users } = useContext(CreateUserContext);
+    
     return (
         <div className="overflow-x-auto">
             <table className="table">
@@ -32,7 +28,7 @@ export function Table() {
                 </thead>
                 <tbody>
                     {
-                        users.map((user: any, index: number) => (user) && (                            
+                        users.map((user: any, index: number) => (user) && (
                             <tr key={index}>
                                 <th>
                                     <label>
@@ -63,7 +59,8 @@ export function Table() {
                                 </td>
 
                                 <td>
-                                    {user.status}
+                                    <StatusTag status={user.status} />
+
                                 </td>
 
                                 <th>
@@ -72,9 +69,11 @@ export function Table() {
                             </tr>
                         )
                         )
+
                     }
                 </tbody>
             </table>
         </div>
     )
+
 }

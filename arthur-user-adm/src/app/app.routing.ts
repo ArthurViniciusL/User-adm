@@ -1,8 +1,8 @@
 
 const Routes = {
   list: '/',
-  userRegistration: '/pages/users/create'
+  userCreate: '/pages/users/create',
+  userEdit: (id: number) => `pages/users/edit/${id}`
 }
-
 
 export default Routes;

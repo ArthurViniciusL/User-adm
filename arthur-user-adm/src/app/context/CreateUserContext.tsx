@@ -5,17 +5,17 @@ import DataService from "../utils/DataService";
 import { useRouter } from "next/navigation";
 import Routes from "../app.routing";
 
-export const DataUserContext = createContext<any>({});
+export const CreateUserContext = createContext<any>({});
 
 interface CreateUserProviderProps {
     children: React.ReactNode;
 }
 
-export function DataUserProvider({ children }: CreateUserProviderProps) {
+export function CreateUserProvider({ children }: CreateUserProviderProps) {
 
     const router = useRouter();
-    
-    const [users, setUsers] = useState([{}]);
+
+    const [users, setUsers] = useState([]);
 
     const [name, setName] = useState<string>('');
 
@@ -26,15 +26,10 @@ export function DataUserProvider({ children }: CreateUserProviderProps) {
     const [verified, setVerified] = useState<boolean>(false);
     const [status, setStatus] = useState<string>('');
 
+    
 
     function handleSetName(event: any) {
         setName(event.target.value);
-    };
-
-    async function saveDataUser() {
-        await new DataService().createUser(name, image, company, role, verified, status);
-        // listAllUsers();
-        router.push(Routes.list);
     };
 
     function handleSetCompany(event: any) {
@@ -53,19 +48,32 @@ export function DataUserProvider({ children }: CreateUserProviderProps) {
         setStatus(event.target.value)
     };
 
+    function clearOldStates() {
+        setName('');
+        setCompany('');
+        setRole('');
+        setVerified(false);
+        setStatus('');
+    };
+
+    async function saveDataUser() {
+        await new DataService().createUser(name, image, company, role, verified, status);
+        router.push(Routes.list);
+    };
+
     return (
-        <DataUserContext.Provider value={{
+        <CreateUserContext.Provider value={{
             users,
             setUsers,
-            setName,
             handleSetName,
             handleSetCompany,
             handleSetRole,
-            handleSetVerified, verified, setVerified,
+            handleSetVerified, setVerified,
             handleSetStatus,
-            saveDataUser
+            clearOldStates,
+            saveDataUser,
         }}>
             {children}
-        </DataUserContext.Provider>
+        </CreateUserContext.Provider>
     )
 }

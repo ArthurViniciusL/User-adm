@@ -3,23 +3,24 @@
 import styles from './Create.module.css';
 
 import { Header } from '@/app/components/Header';
-import { DataUserContext } from '@/app/context/DataUserContext';
+import { SelectStatus } from '@/app/components/selects/SelectStatus';
+import { CreateUserContext } from '@/app/context/CreateUserContext';
 import { useContext, useEffect } from 'react';
 
 export default function Create() {
 
     const {
+        clearOldStates,
         saveDataUser,
         handleSetName,
         handleSetCompany,
         handleSetRole,
         handleSetVerified, verified, setVerified,
-        handleSetStatus
-    } = useContext(DataUserContext)
+    } = useContext(CreateUserContext)
 
     useEffect(() => {
-        setVerified(false);
-    }, [])
+        clearOldStates();
+    }, []);
 
     return (
         <main>
@@ -52,15 +53,7 @@ export default function Create() {
                         <option value="Developer">Developer</option>
                     </select>
 
-                    {/* defaultChecked */}
-                    {/* <input type="checkbox" className="toggle" /> */}
-
-                    <select defaultValue="" onChange={handleSetStatus} className="select select-bordered w-full max-w-xs gap-2 m-5">
-                        <option value="" disabled>Select status *</option>
-                        <option value="Banned">Banned</option>
-                        <option value="Active">Active</option>
-                        <option value="Idle">Idle</option>
-                    </select>
+                    <SelectStatus/>
 
                     <div className='flex justify-center gap-4'>
                         <label className="ml-2">

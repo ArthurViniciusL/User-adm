@@ -1,6 +1,6 @@
 'use client'
 import { createContext } from "react";
-import { DataUserProvider } from "./DataUserContext";
+import { CreateUserProvider } from "./CreateUserContext";
 
 
 export const AppContext = createContext<any>({});
@@ -12,9 +12,9 @@ interface AppProviderProps {
 export function AppProvider({ children }: AppProviderProps) {
     return (
         <AppContext.Provider value={{}}>
-            <DataUserProvider>
+            <CreateUserProvider>
                 {children}
-            </DataUserProvider>
+            </CreateUserProvider>
         </AppContext.Provider>
     );
 }

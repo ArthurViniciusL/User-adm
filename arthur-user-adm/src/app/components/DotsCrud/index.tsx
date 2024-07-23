@@ -1,8 +1,9 @@
-import { DataUserContext } from "@/app/context/DataUserContext";
+import Routes from "@/app/app.routing";
+import { CreateUserContext } from "@/app/context/CreateUserContext";
 import DataService from "@/app/utils/DataService";
-import { DotSquareIcon, EllipsisVertical } from "lucide-react";
-import { useContext, useState } from "react";
-
+import { EllipsisVertical } from "lucide-react";
+import Link from "next/link";
+import { useContext, useEffect, useState } from "react";
 interface DotsCrudProps {
     userId: any;
 }
@@ -11,6 +12,7 @@ export function DotsCrud({ userId }: DotsCrudProps) {
 
     const [dataService] = useState(new DataService());
 
+
     return (
         <div className="dropdown dropdown-left dropdown-end">
             <button tabIndex={0} role="button" className="btn p-2 m-1 bg-white border-0">
@@ -18,12 +20,14 @@ export function DotsCrud({ userId }: DotsCrudProps) {
             </button>
             <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
                 <li>
-                    <button>
-                        Edit
-                    </button>
+                    <Link href={Routes.userEdit(userId)} >
+                        <button>
+                            Edit
+                        </button>
+                    </Link>
                 </li>
                 <li>
-                    <button onClick={() => dataService.deleteUser(userId)} >
+                    <button onClick={() => { dataService.deleteUser(userId), window.location.reload() }} >
                         Delete
                     </button>
                 </li>

@@ -8,14 +8,14 @@ import Routes from "./app.routing";
 import { SearchBar } from "@/app/components/SearchBar";
 import { Table } from "./components/Table";
 import { useContext, useEffect, useState } from "react";
-import { DataUserContext } from "./context/DataUserContext";
+import { CreateUserContext } from "./context/CreateUserContext";
 import DataService from "./utils/DataService";
 
 export default function List() {
 
   const router = useRouter();
 
-  const { users, setUsers } = useContext(DataUserContext)
+  const { setUsers } = useContext(CreateUserContext);
 
   useEffect(() => {
     async function getData() {
@@ -35,6 +35,7 @@ export default function List() {
             verified: user.verified,
             status: user.status
           };
+
         } else {
           return null;
         }
@@ -42,13 +43,15 @@ export default function List() {
       setUsers(usersList);
     };
     getData();
-  }, [users]);
+
+  }, []);  //users
+
 
   return (
     <main>
       <Header title="Users" >
-        <button className='app-btn' onClick={() => router.push(Routes.userRegistration)}>
-          <Plus />
+        <button className='app-btn' onClick={() => router.push(Routes.userCreate)}>
+          <Plus size={20} />
           New User
         </button>
       </Header>
