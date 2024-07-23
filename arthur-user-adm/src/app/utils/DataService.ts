@@ -1,11 +1,11 @@
 export type USER = {
     id: number,
-    name: string;
     image: string;
+    name: string;
+    company: string;
     role: string;
     verified: boolean;
     status: string;
-    company: string
 }
 
 export default class DataService {
@@ -21,32 +21,30 @@ export default class DataService {
         }
     }
 
-    public getAllUsers() {
-        const DATA_LOCAL_STORAGE: {
-            [key: string]: string | null
-        } = {};
+    public getUsers() {
+        const dataLocalStorage: { [key: string]: string | null } = {};
 
         for (let i = 1; i <= DataService.id; i++) {
-            DATA_LOCAL_STORAGE[String(i)] = window.localStorage.getItem(String(i));
+            dataLocalStorage[String(i)] = window.localStorage.getItem(String(i));
         }
-        return DATA_LOCAL_STORAGE;
+        return dataLocalStorage;
     }
 
-    public getUser(userId: number): USER | null {
+    /* public getUser(userId: number): USER | null {
         const userData = window.localStorage.getItem(String(userId));
         if (userData) {
             return JSON.parse(userData);
         }
         return null;
-    }
+    } */
 
     public createUser(name: string, image: string, company: string, role: string, verified: boolean, status: string) {
         DataService.id++;
         const id = DataService.id;
         const data = JSON.stringify({
             id: id,
-            name,
             image,
+            name,
             company,
             role,
             verified,

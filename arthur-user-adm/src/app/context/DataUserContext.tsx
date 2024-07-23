@@ -14,48 +14,17 @@ interface CreateUserProviderProps {
 export function DataUserProvider({ children }: CreateUserProviderProps) {
 
     const router = useRouter();
+    
+    const [users, setUsers] = useState([{}]);
 
-    const [dataService] = useState(new DataService());
-    const [allUsers, setAllUser] = useState([]);
     const [name, setName] = useState<string>('');
 
-
-    const image = 'https://example.com/image.jpg';
+    const image = "https://img.daisyui.com/images/profile/demo/3@94.webp";
 
     const [company, setCompany] = useState<string>('');
     const [role, setRole] = useState<string>('');
     const [verified, setVerified] = useState<boolean>(false);
     const [status, setStatus] = useState<string>('');
-
-    async function listAllUsers() {
-        const Users = Object.entries(await dataService.getAllUsers())
-
-        // console.log(dataService.getAllUsers())
-        /*
-        * Montando uma matriz de pares chave-valor ([id, dataStorage]), onde id é a chave e userData é
-        * o valor associado para ser usado no map do componente de tabela
-        */
-        const listUsers: any = Users.map(([id, dataStorage]) => {
-            if (dataStorage) {
-                const user = JSON.parse(dataStorage);
-                return {
-                    id: user.id,
-                    name: user.name,
-                    company: user.company,
-                    role: user.role,
-                    verified: user.verified,
-                    status: user.status
-                };
-            } else {
-                return null;
-            }
-        })
-        setAllUser(listUsers);
-    };
-
-    useEffect(() => {
-        listAllUsers();
-    }, [dataService]);
 
 
     function handleSetName(event: any) {
@@ -63,9 +32,8 @@ export function DataUserProvider({ children }: CreateUserProviderProps) {
     };
 
     async function saveDataUser() {
-        await dataService.createUser(name, image, company, role, verified, status);
-        listAllUsers();
-        //setVerified(false);
+        await new DataService().createUser(name, image, company, role, verified, status);
+        // listAllUsers();
         router.push(Routes.list);
     };
 
@@ -78,7 +46,6 @@ export function DataUserProvider({ children }: CreateUserProviderProps) {
     }
 
     function handleSetVerified() {
-        // setVerified(event.target.value);
         setVerified(!verified)
     };
 
@@ -88,7 +55,9 @@ export function DataUserProvider({ children }: CreateUserProviderProps) {
 
     return (
         <DataUserContext.Provider value={{
-            allUsers,
+            users,
+            setUsers,
+            setName,
             handleSetName,
             handleSetCompany,
             handleSetRole,

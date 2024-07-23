@@ -1,10 +1,15 @@
 import { useContext, useEffect, useState } from "react";
 import { DotsCrud } from "../DotsCrud";
 import { DataUserContext } from "@/app/context/DataUserContext";
+import Image from "next/image";
 
 export function Table() {
 
-    const { allUsers } = useContext(DataUserContext);
+    // const [allUsers, setAllUser] = useState([]);
+
+    const { users } = useContext(DataUserContext);
+
+
 
     return (
         <div className="overflow-x-auto">
@@ -27,19 +32,20 @@ export function Table() {
                 </thead>
                 <tbody>
                     {
-                        allUsers.map((user: any, index: number) => (
+                        users.map((user: any, index: number) => (user) && (                            
                             <tr key={index}>
                                 <th>
                                     <label>
                                         <input type="checkbox" className="checkbox" />
                                     </label>
                                 </th>
-
                                 <td>
                                     <div className="flex items-center gap-3">
                                         <div>
-                                            {/* img */}
-                                            <div className="font-bold">{user.name}</div>
+                                            {/* <img
+                                                    src={users.image}
+                                                    alt="Avatar Tailwind CSS Component" /> */}
+                                            <div className="font-bold">{user.name === null ? '' : user.name}</div>
                                         </div>
                                     </div>
                                 </td>
@@ -61,11 +67,11 @@ export function Table() {
                                 </td>
 
                                 <th>
-                                    {/* Assume DotsCrud is another component */}
                                     <DotsCrud userId={user.id} />
                                 </th>
                             </tr>
-                        ))
+                        )
+                        )
                     }
                 </tbody>
             </table>
