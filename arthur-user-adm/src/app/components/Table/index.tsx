@@ -5,11 +5,12 @@ import { StatusTag } from "../StatusTag";
 
 export function Table() {
 
-    const { users, getUsers } = useContext(CreateUserContext);
+    const { users, name } = useContext(CreateUserContext);
 
+    /*  
     useEffect(() => {
         getUsers();
-    }, []);
+    }, []); */
 
     return (
         <div className="overflow-x-auto">

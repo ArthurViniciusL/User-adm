@@ -29,7 +29,7 @@ export default function Edit() {
 
     return (
         <main>
-            <Header title={`Edit, ${name}`}>
+            <Header title={`Edit`}>
                 <button className='app-btn' onClick={saveUserEdition}>
                     Save changes
                 </button>
@@ -46,11 +46,11 @@ export default function Edit() {
                 < div className="ContentBox p-2">
 
                     <label className="input input-bordered flex items-center w-full max-w-xs gap-2 m-5">
-                        <input type="text" className="grow" placeholder="Image" />
+                            <input type="text" className="grow" placeholder="Image" />
                     </label>
 
                     <label className="input input-bordered flex items-center w-full max-w-xs gap-2 m-5">
-                        <input type="text" className="grow" placeholder={name} onChange={handleEditName} />
+                        <input type="text" className="grow" value={name} onChange={handleEditName} />
                     </label>
 
                     <select value={company} onChange={handleEditCompany} className="select select-bordered w-full max-w-xs gap-2 m-5">

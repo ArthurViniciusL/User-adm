@@ -14,6 +14,13 @@ import { CreateUserContext } from "./context/CreateUserContext";
 export default function List() {
 
   const router = useRouter();
+
+  const { users, getUsers } = useContext(CreateUserContext);
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+  
   return (
     <main>
       <Header title="Users" >

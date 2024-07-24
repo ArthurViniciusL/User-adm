@@ -99,8 +99,8 @@ export function CreateUserProvider({ children }: CreateUserProviderProps) {
 
     return (
         <CreateUserContext.Provider value={{
-            users,
-            getUsers,
+            users, getUsers,
+            name, setName,
             handleSetName,
             handleSetCompany,
             handleSetRole,
