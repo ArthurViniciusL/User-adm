@@ -23,20 +23,21 @@ export default class DataService {
 
     public getUsers() {
         const dataLocalStorage: { [key: string]: string | null } = {};
-
         for (let i = 1; i <= DataService.id; i++) {
             dataLocalStorage[String(i)] = window.localStorage.getItem(String(i));
         }
         return dataLocalStorage;
     }
 
-    /* public getUser(userId: number): USER | null {
-        const userData = window.localStorage.getItem(String(userId));
-        if (userData) {
-            return JSON.parse(userData);
+    public getUser(userId: number): USER | null {
+        if (typeof window !== 'undefined') {
+            const userData = window.localStorage.getItem(String(userId));
+            if (userData) {
+                return JSON.parse(userData);
+            }
         }
         return null;
-    } */
+    }
 
     public createUser(name: string, image: string, company: string, role: string, verified: boolean, status: string) {
         DataService.id++;

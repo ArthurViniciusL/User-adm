@@ -1,6 +1,6 @@
 'use client'
-import { createContext } from "react";
-import { CreateUserProvider } from "./CreateUserContext";
+import { createContext, useContext } from "react";
+import { CreateUserContext, CreateUserProvider } from "./CreateUserContext";
 
 
 export const AppContext = createContext<any>({});

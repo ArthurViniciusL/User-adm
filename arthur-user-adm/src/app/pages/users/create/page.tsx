@@ -10,16 +10,16 @@ import { useContext, useEffect } from 'react';
 export default function Create() {
 
     const {
-        clearOldStates,
+        clearStates,
         saveDataUser,
         handleSetName,
         handleSetCompany,
         handleSetRole,
-        handleSetVerified, verified, setVerified,
+        handleSetVerified, verified,
     } = useContext(CreateUserContext)
 
-    useEffect(() => {
-        clearOldStates();
+    useEffect(() => {        
+        clearStates();
     }, []);
 
     return (
@@ -53,7 +53,7 @@ export default function Create() {
                         <option value="Developer">Developer</option>
                     </select>
 
-                    <SelectStatus/>
+                    <SelectStatus />
 
                     <div className='flex justify-center gap-4'>
                         <label className="ml-2">
