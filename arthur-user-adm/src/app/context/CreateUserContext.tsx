@@ -15,8 +15,6 @@ export function CreateUserProvider({ children }: CreateUserProviderProps) {
 
     const router = useRouter();
 
-    const [id, setId] = useState(0)
-
     const [users, setUsers] = useState<any>([])
     const [name, setName] = useState<string>('');
 
@@ -90,8 +88,6 @@ export function CreateUserProvider({ children }: CreateUserProviderProps) {
         router.push(Routes.list);
     };
 
-
-
     function clearStates() {
         setName('');
         // setImage();
@@ -111,10 +107,7 @@ export function CreateUserProvider({ children }: CreateUserProviderProps) {
             handleSetVerified, setVerified,
             handleSetStatus,
             saveDataUser,
-            clearStates,
-
-            name,
-            setName
+            clearStates
         }}>
             {children}
         </CreateUserContext.Provider>

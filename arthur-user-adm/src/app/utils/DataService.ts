@@ -34,6 +34,7 @@ export default class DataService {
             const userData = window.localStorage.getItem(String(userId));
             if (userData) {
                 return JSON.parse(userData);
+
             }
         }
         return null;

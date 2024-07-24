@@ -67,7 +67,7 @@ export function Table() {
                                 </td>
 
                                 <td>
-                                    <DotsCrud userId={user.id} userName={user.name} />
+                                    <DotsCrud userId={user.id} userName={user.na} />
                                 </td>
                             </tr>
                         )
