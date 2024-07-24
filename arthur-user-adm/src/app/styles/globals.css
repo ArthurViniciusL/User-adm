@@ -18,12 +18,9 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
 }
 
 @layer utilities {
@@ -39,8 +36,9 @@ body {
   --app-rouded: 20px;
   --app-border-color: #d2d4d7
 }
+
 html {
-  overflow-x: hidden;  
+  overflow-x: hidden;
 }
 
 html::-webkit-scrollbar {
@@ -70,12 +68,12 @@ h1 {
 .app-btn {
   min-width: 125px;
   height: fit-content;
-  
+
   padding: var(--btn-padding);
   border-radius: 8px;
   color: white;
   font-weight: bold;
-  
+
   gap: 10px;
   display: flex;
   justify-content: center;
@@ -85,4 +83,11 @@ h1 {
 
 .app-btn:hover {
   box-shadow: 0px 0px 20px 6px rgba(53, 100, 202, 0.377);
+}
+
+.ContentBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }

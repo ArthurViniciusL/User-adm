@@ -40,7 +40,7 @@ export default class DataService {
         return null;
     }
 
-    public createUser(name: string, image: string, company: string, role: string, verified: boolean, status: string) {
+    public postUser(name: string, image: string, company: string, role: string, verified: boolean, status: string) {
         DataService.id++;
         const id = DataService.id;
         const data = JSON.stringify({
@@ -55,6 +55,20 @@ export default class DataService {
 
         let updateId = window.localStorage.setItem('lastId', String(DataService.id));
         let insertData = window.localStorage.setItem(String(DataService.id), data);
+    }
+
+    public patchUser(id: number, name: string, image: string, company: string, role: string, verified: boolean, status: string) {
+        const data = JSON.stringify({
+            id,
+            image,
+            name,
+            company,
+            role,
+            verified,
+            status
+        });
+
+        return window.localStorage.setItem(String(id), data);
     }
 
     public deleteUser(userId: number): void {

@@ -84,7 +84,7 @@ export function CreateUserProvider({ children }: CreateUserProviderProps) {
     };
 
     async function saveDataUser() {
-        await new DataService().createUser(name, image, company, role, verified, status);
+        await new DataService().postUser(name, image, company, role, verified, status);
         router.push(Routes.list);
     };
 

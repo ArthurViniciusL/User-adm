@@ -1,5 +1,4 @@
 import Routes from "@/app/app.routing";
-import { CreateUserContext } from "@/app/context/CreateUserContext";
 import { EditContext } from "@/app/context/EditContext";
 import DataService from "@/app/utils/DataService";
 import { EllipsisVertical } from "lucide-react";
@@ -16,11 +15,7 @@ export function DotsCrud({ userId, userName }: DotsCrudProps) {
     const routers = useRouter();
     const [dataService] = useState(new DataService());
 
-    const { setName, id, setId, getUserForEdit } = useContext(EditContext);
-
-    /**
-     * TALVEZ APLICAR UM MAP EM CIMA DE USER, SEGUIDO DE UM FILTER POR ID IGUAL AO USERID
-    */
+    const { getUserForEdit } = useContext(EditContext);
 
     return (
         <div className="dropdown dropdown-left dropdown-end">
