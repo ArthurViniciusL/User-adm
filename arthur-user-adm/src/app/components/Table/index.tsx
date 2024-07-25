@@ -2,6 +2,8 @@ import { useContext, useEffect, useState } from "react";
 import { DotsCrud } from "../DotsCrud";
 import { CreateUserContext } from "@/app/context/CreateUserContext";
 import { StatusTag } from "../StatusTag";
+import Image from "next/image";
+import { CircleUserRound, UserCircle, UserCircle2, UserRound } from "lucide-react";
 
 export function Table() {
 
@@ -43,11 +45,13 @@ export function Table() {
                                 <td>
                                     <div className="flex items-center gap-3">
                                         <div>
-                                            {/* <img
-                                                    src={users.image}
-                                                    alt="Avatar Tailwind CSS Component" /> */}
-                                            <div className="font-bold">{user.name === null ? '' : user.name}</div>
+                                            {
+                                            user.image === '' ? <CircleUserRound size={30} /> :
+                                                <img src={user.image} width={40} alt={`${user.name} picture`}/>
+                                            }
                                         </div>
+
+                                        <div className="font-bold">{user.name === null ? '' : user.name}</div>
                                     </div>
                                 </td>
 

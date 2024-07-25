@@ -10,6 +10,7 @@ export default function Create() {
     const {
         clearStates,
         saveDataUser,
+        handleSetImage,
         handleSetName,
         handleSetCompany,
         handleSetRole,
@@ -29,7 +30,7 @@ export default function Create() {
             <section className="">
                 < div className="ContentBox p-2">
 
-                    <label className="input input-bordered flex items-center w-full max-w-xs gap-2 m-5">
+                    <label onChange={handleSetImage} className="input input-bordered flex items-center w-full max-w-xs gap-2 m-5">
                         <input type="text" className="grow" placeholder="Image" />
                     </label>
 

@@ -16,10 +16,8 @@ export function CreateUserProvider({ children }: CreateUserProviderProps) {
     const router = useRouter();
 
     const [users, setUsers] = useState<any>([])
+    const [image, setImage] = useState('');
     const [name, setName] = useState<string>('');
-
-    const image = "https://img.daisyui.com/images/profile/demo/3@94.webp";
-
     const [company, setCompany] = useState<string>('');
     const [role, setRole] = useState<string>('');
     const [verified, setVerified] = useState<boolean>(false);
@@ -37,6 +35,7 @@ export function CreateUserProvider({ children }: CreateUserProviderProps) {
                 const user = JSON.parse(dataStorage);
                 return {
                     id: user.id,
+                    image: user.image,
                     name: user.name,
                     company: user.company,
                     role: user.role,
@@ -51,18 +50,10 @@ export function CreateUserProvider({ children }: CreateUserProviderProps) {
         setUsers(usersList);
     };
 
-    /*     function getUsers() {
-            let dataLocalStorage = [];
-            for (let i = 0; i < localStorage.length; i++) {
-                let key = localStorage.key(i);
-                let value: any = localStorage.getItem(String(key));
-                let jsonValues = JSON.parse(value);
-                dataLocalStorage.push({ key: key, ...jsonValues })
-            }
-            dataLocalStorage.sort((a, b) => Number(a.key) - Number(b.key));
-            return dataLocalStorage;
-        } */
-
+    function handleSetImage(event:any) {
+        setImage(event.target.value)
+    }
+    
     function handleSetName(event: any) {
         setName(event.target.value);
     };
@@ -90,7 +81,7 @@ export function CreateUserProvider({ children }: CreateUserProviderProps) {
 
     function clearStates() {
         setName('');
-        // setImage();
+        setImage('');
         setCompany('');
         setRole('');
         setVerified(false);
@@ -101,6 +92,7 @@ export function CreateUserProvider({ children }: CreateUserProviderProps) {
         <CreateUserContext.Provider value={{
             users, getUsers,
             name, setName,
+            handleSetImage,
             handleSetName,
             handleSetCompany,
             handleSetRole,

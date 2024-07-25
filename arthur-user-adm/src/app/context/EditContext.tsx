@@ -14,9 +14,8 @@ export function EditProvider({ children }: EditProviderProps) {
     const router = useRouter();
 
     const [id, setId] = useState<number>(0);
+    const [image, setImage] = useState('');
     const [name, setName] = useState<string>('');
-
-    const image = "https://img.daisyui.com/images/profile/demo/3@94.webp";
 
     const [company, setCompany] = useState<string>('');
     const [role, setRole] = useState<string>('');
@@ -29,7 +28,7 @@ export function EditProvider({ children }: EditProviderProps) {
         const user = {
             id: id,
             nome: editThe.name,
-            image: '',
+            image: editThe.image,
             company: editThe.company,
             role: editThe.role,
             verified: editThe.verified,
@@ -45,11 +44,15 @@ export function EditProvider({ children }: EditProviderProps) {
 
         setId(parse.id);
         setName(parse.nome);
-        // setImage('');
+        setImage(parse.image);
         setCompany(parse.company);
         setRole(parse.role);
         setVerified(parse.verified);
         setStatus(parse.status);
+    };
+
+    function handleEditImage(event: any) {
+        setImage(event.target.value)
     };
 
     function handleEditName(event: any) {
@@ -87,6 +90,7 @@ export function EditProvider({ children }: EditProviderProps) {
             verified, setVerified,
             status, setStatus,
             
+            handleEditImage,
             handleEditName,
             handleEditCompany,
             handleEditRole,
