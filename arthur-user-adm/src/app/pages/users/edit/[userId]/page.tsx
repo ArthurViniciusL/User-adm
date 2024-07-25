@@ -2,7 +2,6 @@
 import '@/app/styles/globals.css';
 import { Header } from "@/app/components/Header";
 import { EditContext } from "@/app/context/EditContext";
-import DataService from "@/app/utils/DataService";
 import { useRouter } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
 
@@ -35,19 +34,11 @@ export default function Edit() {
                     Save changes
                 </button>
             </Header>
-            {/* <ul>
-                <li>{id}</li>
-                <li>{name}</li>
-                <li>{company}</li>
-                <li>{role}</li>
-                <li>{verified}</li>
-                <li>{status}</li>
-            </ul> */}
             <section className="">
                 < div className="ContentBox p-2">
 
                     <label onChange={handleEditImage} className="input input-bordered flex items-center w-full max-w-xs gap-2 m-5">
-                            <input type="text" className="grow" placeholder="Image" />
+                        <input type="text" className="grow" placeholder="Image" />
                     </label>
 
                     <label className="input input-bordered flex items-center w-full max-w-xs gap-2 m-5">

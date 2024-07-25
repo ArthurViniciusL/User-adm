@@ -20,17 +20,17 @@ export default function List() {
   useEffect(() => {
     getUsers();
   }, []);
-  
+
   return (
     <main>
       <Header title="Users" >
         {/* onClick={() => router.push(Routes.userCreate)} */}
-        <Link href={Routes.userCreate}>
-          <button className='app-btn' >
+       
+          <button className='app-btn' onClick={() => router.push(Routes.userCreate)} >
             <Plus size={20} />
             New User
           </button>
-        </Link>
+        
       </Header>
 
       <section>

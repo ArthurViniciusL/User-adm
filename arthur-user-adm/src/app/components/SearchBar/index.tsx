@@ -7,7 +7,8 @@ export function SearchBar() {
     const { name, setName } = useContext(CreateUserContext);
 
     function handleSearch(event:any) {
-        setName(event.target.value);
+        let userName = event.target.value;
+        setName(userName.toLowerCase())
     }
 
     return (
