@@ -3,7 +3,7 @@ import { EditContext } from "@/app/context/EditContext";
 import DataService from "@/app/utils/DataService";
 import { EllipsisVertical } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 
 interface DotsCrudProps {
     userId: any;

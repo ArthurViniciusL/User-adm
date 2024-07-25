@@ -1,15 +1,12 @@
 'use client'
-
 import { Header } from "@/app/components/Header";
-import Link from "next/link";
 import { Plus } from "lucide-react";
 import { useRouter } from "next/navigation";
-import Routes from "./app.routing";
-
-import { SearchBar } from "@/app/components/SearchBar";
-import { Table } from "./components/Table";
 import { useContext, useEffect } from "react";
-import { CreateUserContext } from "./context/CreateUserContext";
+import { CreateUserContext } from "@/app/context/CreateUserContext";
+import Routes from "@/app/app.routing";
+import { SearchBar } from "@/app/components/SearchBar";
+import { Table } from "@/app/components/Table";
 
 export default function List() {
 
@@ -25,12 +22,12 @@ export default function List() {
     <main>
       <Header title="Users" >
         {/* onClick={() => router.push(Routes.userCreate)} */}
-       
-          <button className='app-btn' onClick={() => router.push(Routes.userCreate)} >
-            <Plus size={20} />
-            New User
-          </button>
-        
+
+        <button className='app-btn' onClick={() => router.push(Routes.userCreate)} >
+          <Plus size={20} />
+          New User
+        </button>
+
       </Header>
 
       <section>
