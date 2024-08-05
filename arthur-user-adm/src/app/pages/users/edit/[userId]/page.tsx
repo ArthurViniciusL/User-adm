@@ -38,7 +38,7 @@ export default function Edit() {
                 < div className="ContentBox p-2">
 
                     <label onChange={handleEditImage} className="input input-bordered flex items-center w-full max-w-xs gap-2 m-5">
-                        <input type="text" className="grow" placeholder="Image" />
+                        <input type="text" className="grow" placeholder="Edit link image here" />
                     </label>
 
                     <label className="input input-bordered flex items-center w-full max-w-xs gap-2 m-5">

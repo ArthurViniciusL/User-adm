@@ -31,11 +31,11 @@ export default function Create() {
                 < div className="ContentBox p-2">
 
                     <label onChange={handleSetImage} className="input input-bordered flex items-center w-full max-w-xs gap-2 m-5">
-                        <input type="text" className="grow" placeholder="Image" />
+                        <input type="text" className="grow" placeholder="Insert link image here" />
                     </label>
 
                     <label className="input input-bordered flex items-center w-full max-w-xs gap-2 m-5">
-                        <input onChange={handleSetName} type="text" className="grow" placeholder="Name *" />
+                        <input onChange={handleSetName} type="text" className="grow" placeholder="Insert name here *" />
                     </label>
 
                     <select defaultValue="" onChange={handleSetCompany} className="select select-bordered w-full max-w-xs gap-2 m-5">
